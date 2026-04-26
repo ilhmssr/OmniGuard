@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import BottomNav from "@/components/layout/BottomNav";
+import TopBar from "@/components/layout/TopBar";
 
 /* -----------------------------
    FULL DATA SYSTEM (FIXED)
@@ -120,6 +121,7 @@ export default function AiSafetyPage() {
 
   return (
     <main className="min-h-screen bg-gray-100 pb-24 pt-16 px-4">
+            <TopBar />
 
       {/* HEADER */}
       <div className="max-w-6xl mx-auto mb-4">
