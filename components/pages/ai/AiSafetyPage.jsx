@@ -5,7 +5,7 @@ import Image from "next/image";
 import BottomNav from "@/components/layout/BottomNav";
 
 /* -----------------------------
-   FULL DATA SYSTEM
+   FULL DATA SYSTEM (FIXED)
 ------------------------------*/
 const rooms = {
   A: {
@@ -16,6 +16,8 @@ const rooms = {
         label: "CAM-A1 Entrance",
         score: 72,
         confidence: 92,
+        stats: { people: 3, violations: 2, compliance: 78 },
+        recommendation: "Wajibkan masker & perketat PPE di entrance.",
         alerts: [
           { type: "error", text: "No Mask Detected" },
           { type: "warning", text: "Helmet Adjustment Needed" },
@@ -26,6 +28,8 @@ const rooms = {
         label: "CAM-A2 PPE Zone",
         score: 85,
         confidence: 95,
+        stats: { people: 5, violations: 1, compliance: 90 },
+        recommendation: "Area aman, monitoring rutin cukup.",
         alerts: [{ type: "info", text: "Routine Check Passed" }],
       },
       {
@@ -33,6 +37,8 @@ const rooms = {
         label: "CAM-A3 Corridor",
         score: 90,
         confidence: 97,
+        stats: { people: 2, violations: 0, compliance: 96 },
+        recommendation: "Kondisi optimal, tidak ada pelanggaran.",
         alerts: [],
       },
     ],
@@ -46,6 +52,8 @@ const rooms = {
         label: "CAM-B1 Line 1",
         score: 78,
         confidence: 88,
+        stats: { people: 6, violations: 2, compliance: 80 },
+        recommendation: "Perbaiki posture kerja operator.",
         alerts: [{ type: "warning", text: "Posture Risk Detected" }],
       },
       {
@@ -53,6 +61,8 @@ const rooms = {
         label: "CAM-B2 Line 2",
         score: 82,
         confidence: 90,
+        stats: { people: 4, violations: 1, compliance: 85 },
+        recommendation: "Optimalkan flow produksi untuk efisiensi.",
         alerts: [{ type: "info", text: "Cycle Delay Minor" }],
       },
       {
@@ -60,6 +70,8 @@ const rooms = {
         label: "CAM-B3 Output",
         score: 88,
         confidence: 93,
+        stats: { people: 3, violations: 0, compliance: 92 },
+        recommendation: "Output stabil, tidak ada masalah.",
         alerts: [],
       },
     ],
@@ -73,6 +85,8 @@ const rooms = {
         label: "CAM-C1 Entry",
         score: 60,
         confidence: 85,
+        stats: { people: 2, violations: 3, compliance: 65 },
+        recommendation: "Tingkatkan keamanan akses area storage.",
         alerts: [{ type: "error", text: "Unauthorized Access" }],
       },
       {
@@ -80,6 +94,8 @@ const rooms = {
         label: "CAM-C2 Shelf",
         score: 70,
         confidence: 89,
+        stats: { people: 5, violations: 1, compliance: 80 },
+        recommendation: "Perbaiki layout shelf untuk efisiensi.",
         alerts: [],
       },
       {
@@ -87,6 +103,8 @@ const rooms = {
         label: "CAM-C3 Exit",
         score: 75,
         confidence: 91,
+        stats: { people: 3, violations: 0, compliance: 88 },
+        recommendation: "Exit flow sudah sesuai SOP.",
         alerts: [{ type: "info", text: "Inventory Scan Done" }],
       },
     ],
@@ -139,16 +157,15 @@ export default function AiSafetyPage() {
           {/* CAMERA VIEW */}
           <div className="relative rounded-xl overflow-hidden bg-black">
 
-<Image
-  src={cam.img}
-  alt="camera"
-  width={1200}
-  height={700}
-  className="w-full h-auto object-cover opacity-90"
-  priority
-/>
+            <Image
+              src={cam.img}
+              alt="camera"
+              width={1200}
+              height={700}
+              className="w-full h-auto object-cover opacity-90"
+              priority
+            />
 
-            {/* TOP LABEL */}
             <div className="absolute top-0 left-0 w-full flex justify-between p-3 text-white bg-gradient-to-b from-black/60">
               <span className="text-xs font-mono">
                 {cam.label}
@@ -224,28 +241,27 @@ export default function AiSafetyPage() {
             )}
           </div>
 
-          {/* DETECTION STATS */}
+          {/* DETECTION STATS (FIXED) */}
           <div className="bg-white rounded-xl p-4 shadow">
             <h2 className="font-semibold mb-2">Detection Stats</h2>
             <p className="text-sm text-gray-500">
-              People detected: 3
+              People detected: {cam.stats.people}
             </p>
             <p className="text-sm text-gray-500">
-              Violations: 1
+              Violations: {cam.stats.violations}
             </p>
             <p className="text-sm text-gray-500">
-              Compliance: 82%
+              Compliance: {cam.stats.compliance}%
             </p>
           </div>
 
-          {/* AI RECOMMENDATION */}
+          {/* AI RECOMMENDATION (FIXED) */}
           <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
             <h2 className="font-semibold text-blue-700 mb-2">
               AI Recommendation
             </h2>
             <p className="text-sm text-blue-600">
-              Increase supervision in {room.name}. PPE compliance
-              drop detected in selected camera zone.
+              {cam.recommendation}
             </p>
           </div>
 
