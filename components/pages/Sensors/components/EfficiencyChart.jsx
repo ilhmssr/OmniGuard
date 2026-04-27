@@ -8,32 +8,12 @@ import {
 
 // 🔥 DATA PER MACHINE
 const efficiencyData = {
-  tablet1: [
-    { v: 60 },
-    { v: 75 },
-    { v: 65 },
-    { v: 90 },
-    { v: 70 },
-    { v: 95 },
-  ],
-
-  tablet2: [
-    { v: 50 },
-    { v: 60 },
-    { v: 55 },
-    { v: 70 },
-    { v: 68 },
-    { v: 80 },
-  ],
-
-  tablet3: [
-    { v: 40 },
-    { v: 45 },
-    { v: 50 },
-    { v: 55 },
-    { v: 52 },
-    { v: 60 },
-  ],
+  granulator: [{ v: 60 }, { v: 75 }, { v: 65 }, { v: 90 }],
+  fluidbed: [{ v: 70 }, { v: 80 }, { v: 78 }, { v: 85 }],
+  tabletpress: [{ v: 50 }, { v: 60 }, { v: 55 }, { v: 70 }],
+  coating: [{ v: 45 }, { v: 55 }, { v: 60 }, { v: 65 }],
+  blister: [{ v: 65 }, { v: 75 }, { v: 80 }, { v: 85 }],
+  autoclave: [{ v: 40 }, { v: 45 }, { v: 50 }, { v: 55 }],
 };
 
 export default function EfficiencyChart({ asset }) {

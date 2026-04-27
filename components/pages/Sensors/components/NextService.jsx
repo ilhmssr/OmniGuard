@@ -4,16 +4,21 @@ import { useState } from "react";
 
 // 🔥 default recommendation per machine
 const DEFAULT_INTERVAL = {
-  tablet1: 14,
-  tablet2: 10,
-  tablet3: 7,
+  granulator: 14,
+  fluidbed: 12,
+  tabletpress: 10,
+  coating: 9,
+  blister: 11,
+  autoclave: 7,
 };
 
-// initial data per asset
 const serviceDataInit = {
-  tablet1: { task: "", date: "" },
-  tablet2: { task: "", date: "" },
-  tablet3: { task: "", date: "" },
+  granulator: { task: "", date: "" },
+  fluidbed: { task: "", date: "" },
+  tabletpress: { task: "", date: "" },
+  coating: { task: "", date: "" },
+  blister: { task: "", date: "" },
+  autoclave: { task: "", date: "" },
 };
 
 export default function NextServiceCard({ asset }) {

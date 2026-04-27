@@ -2,9 +2,12 @@
 import { motion } from "framer-motion";
 
 const healthData = {
-  tablet1: { value: 88, status: "Optimal", color: "#10b981" },
-  tablet2: { value: 72, status: "Warning", color: "#f59e0b" },
-  tablet3: { value: 54, status: "Critical", color: "#ef4444" },
+  granulator: { value: 88, status: "Optimal", color: "#10b981" },
+  fluidbed: { value: 75, status: "Stable", color: "#22c55e" },
+  tabletpress: { value: 72, status: "Warning", color: "#f59e0b" },
+  coating: { value: 65, status: "Monitoring", color: "#f97316" },
+  blister: { value: 80, status: "Good", color: "#3b82f6" },
+  autoclave: { value: 54, status: "Critical", color: "#ef4444" },
 };
 
 function Donut({ value, color }) {

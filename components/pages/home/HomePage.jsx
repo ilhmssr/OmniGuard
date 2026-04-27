@@ -10,6 +10,7 @@ import QuickActions from "./sections/QuickActions";
 import PPESection from "./sections/PESection";
 import GaugeSection from "./sections/GaugeSection";
 import MapSection from "./sections/MapSection";
+import AlertSection from "./sections/AlertSection";
 
 export default function HomePage() {
   const { toasts, showToast } = useToast();
@@ -29,6 +30,7 @@ export default function HomePage() {
         temp={24}
         rh={45}
         />
+        <AlertSection />
         <MapSection />
       </div>
 

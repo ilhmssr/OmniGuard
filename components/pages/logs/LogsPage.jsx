@@ -138,41 +138,28 @@ export default function LogsPage() {
         Showing {start + 1} - {Math.min(start + pageSize, filtered.length)} of {filtered.length}
       </p>
 
-      {/* PAGINATION */}
-<div className="flex justify-center items-center gap-2 pt-4">
+{/* PAGINATION */}
+<div className="flex justify-center items-center gap-4 pt-4">
 
   {/* PREV */}
   <button
     onClick={() => setPage((p) => Math.max(p - 1, 1))}
-    className="px-3 py-1 border rounded"
+    disabled={safePage === 1}
+    className="px-3 py-1 border rounded disabled:opacity-30"
   >
     ‹
   </button>
 
-  {/* MOBILE MODE (TAILWIND) */}
-  <span className="sm:hidden text-sm px-3 py-1">
-    {safePage} / {totalPages}
+  {/* PAGE INFO (SEMUA DEVICE) */}
+  <span className="text-sm px-3 py-1 bg-gray-100 rounded">
+    Page {safePage} of {totalPages}
   </span>
-
-  {/* DESKTOP MODE */}
-  <div className="hidden sm:flex gap-2">
-    {[...Array(totalPages)].map((_, i) => (
-      <button
-        key={i}
-        onClick={() => setPage(i + 1)}
-        className={`px-3 py-1 border rounded ${
-          safePage === i + 1 ? "bg-blue-600 text-white" : ""
-        }`}
-      >
-        {i + 1}
-      </button>
-    ))}
-  </div>
 
   {/* NEXT */}
   <button
     onClick={() => setPage((p) => Math.min(p + 1, totalPages))}
-    className="px-3 py-1 border rounded"
+    disabled={safePage === totalPages}
+    className="px-3 py-1 border rounded disabled:opacity-30"
   >
     ›
   </button>

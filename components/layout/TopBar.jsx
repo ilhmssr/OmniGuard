@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Bell, LogOut } from "lucide-react";
 import { useRouter } from "next/navigation";
 
@@ -16,7 +17,16 @@ export default function TopBar() {
 
       {/* LEFT */}
       <div className="flex items-center gap-2">
-        <span className="text-blue-600">🧪</span>
+
+        {/* 🔥 LOGO IMAGE */}
+        <Image
+          src="/screen.png"
+          alt="logo"
+          width={28}
+          height={28}
+          className="object-contain"
+        />
+
         <h1 className="font-bold text-lg">
           OmniGuard
         </h1>

@@ -12,7 +12,7 @@ import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
 
 export default function SensorsPage() {
-  const [selectedAsset, setSelectedAsset] = useState("tablet1");
+  const [selectedAsset, setSelectedAsset] = useState("granulator");
 
   return (
     <main className="bg-gray-100 min-h-screen pb-24">
@@ -20,7 +20,6 @@ export default function SensorsPage() {
 
       <div className="pt-20 px-4 space-y-6 max-w-6xl mx-auto">
 
-        {/* HEADER */}
         <div className="space-y-1">
           <h1 className="text-xl font-semibold">
             Sensor & Predictive Maintenance
@@ -30,27 +29,26 @@ export default function SensorsPage() {
           </p>
         </div>
 
-        {/* SELECT MACHINE */}
+        {/* 🔥 MESIN FARMASI */}
         <select
           className="w-full border p-2 rounded-lg bg-white mb-10"
           value={selectedAsset}
           onChange={(e) => setSelectedAsset(e.target.value)}
         >
-          <option value="tablet1">Room A</option>
-          <option value="tablet2">Room B</option>
-          <option value="tablet3">Storage Room</option>
+          <option value="granulator">High Shear Granulator</option>
+          <option value="fluidbed">Fluid Bed Dryer</option>
+          <option value="tabletpress">Tablet Press Machine</option>
+          <option value="coating">Coating Machine</option>
+          <option value="blister">Blister Packaging</option>
+          <option value="autoclave">Autoclave Sterilizer</option>
         </select>
 
-        {/* DASHBOARD */}
         <div className="space-y-4">
-
           <HealthScoreCard asset={selectedAsset} />
           <DurabilityCard asset={selectedAsset} />
-
           <NextServiceCard asset={selectedAsset} />
           <EfficiencyChart asset={selectedAsset} />
           <SensorTable asset={selectedAsset} />
-
         </div>
 
       </div>

@@ -1,9 +1,12 @@
 "use client";
 
 const durabilityData = {
-  tablet1: 92,
-  tablet2: 78,
-  tablet3: 61,
+  granulator: 92,
+  fluidbed: 85,
+  tabletpress: 78,
+  coating: 70,
+  blister: 88,
+  autoclave: 61,
 };
 
 export default function DurabilityCard({ asset }) {
