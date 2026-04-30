@@ -34,5 +34,5 @@ jobs:
       uses: alsrb968/action-release-apk@master
       env:
         # Ubah secrets.TOKEN menjadi secrets.GITHUB_TOKEN (ini bawaan otomatis dari GitHub)
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GITHUB_TOKEN: ${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}
         APP_FOLDER: app
