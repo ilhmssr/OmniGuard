@@ -5,7 +5,7 @@ import ToastContainer from "@/components/ui/ToastContainer";
 import TopBar from "@/components/layout/TopBar";
 import BottomNav from "@/components/layout/BottomNav";
 
-import LogsPage from "@/components/pages/Logs/LogsPage";
+import LogsPage from "@/components/pages/logs/LogsPage";
 
 export default function Page() {
   const { toasts } = useToast();
