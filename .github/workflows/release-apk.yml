@@ -3,13 +3,12 @@ name: Publish Release APK
 on:
   push:
     tags: [ "*" ]
-  workflow_dispatch: # Saya tambahkan ini agar Anda tetap punya tombol manual
+  workflow_dispatch: 
 
 jobs:
   publish:
     runs-on: ubuntu-latest
 
-    # PENTING: Wajib ada agar Action punya izin membuat Release
     permissions:
       contents: write 
 
@@ -26,13 +25,16 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
       
-    # Ubah ke assembleDebug karena Anda tidak punya Keystore/Password asli dari pemilik repo
     - name: Build APK
       run: ./gradlew assembleDebug 
       
+    # --- BAGIAN INI YANG KITA UBAH ---
     - name: Publish APK
-      uses: alsrb968/action-release-apk@master
+      uses: softprops/action-gh-release@v2
+      if: startsWith(github.ref, 'refs/tags/')
+      with:
+        # Mencari file APK di folder output dan mengunggahnya
+        files: app/build/outputs/apk/**/*.apk
+        generate_release_notes: true
       env:
-        # Ubah secrets.TOKEN menjadi secrets.GITHUB_TOKEN (ini bawaan otomatis dari GitHub)
-        GITHUB_TOKEN: ${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}
-        APP_FOLDER: app
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
