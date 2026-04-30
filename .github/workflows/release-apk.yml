@@ -1,34 +1,38 @@
-name: Build and Publish Release APK
+name: Publish Release APK
 
 on:
-  # Memicu Action secara otomatis ketika Anda membuat tag baru (misal: v1.0.0)
   push:
-    tags:
-      - 'v*'
-  # Memungkinkan Anda menjalankan Action ini secara manual dari tab "Actions"
-  workflow_dispatch: 
+    tags: [ "*" ]
+  workflow_dispatch: # Saya tambahkan ini agar Anda tetap punya tombol manual
 
 jobs:
-  build-and-release:
+  publish:
     runs-on: ubuntu-latest
-    
-    # PENTING: Izin ini wajib ada agar Action bisa membuat Release di tab Releases
+
+    # PENTING: Wajib ada agar Action punya izin membuat Release
     permissions:
       contents: write 
 
     steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
+    - uses: actions/checkout@v3
+    
+    - name: set up JDK 11
+      uses: actions/setup-java@v3
+      with:
+        java-version: '11'
+        distribution: 'temurin'
+        cache: gradle
 
-      # (Opsional) Mengatur versi Java. Sesuaikan dengan kebutuhan proyek Android tersebut
-      - name: Set up JDK 17
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          distribution: 'temurin'
-
-      # Menjalankan Action dari Marketplace yang Anda minta
-      - name: Build and Publish APK
-        uses: OziomaOgbe/build-and-publish-release-apk-from-your-android-project@v1.0.1 # Pastikan menggunakan versi terbaru Action tersebut
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Grant execute permission for gradlew
+      run: chmod +x gradlew
+      
+    # Ubah ke assembleDebug karena Anda tidak punya Keystore/Password asli dari pemilik repo
+    - name: Build APK
+      run: ./gradlew assembleDebug 
+      
+    - name: Publish APK
+      uses: alsrb968/action-release-apk@master
+      env:
+        # Ubah secrets.TOKEN menjadi secrets.GITHUB_TOKEN (ini bawaan otomatis dari GitHub)
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        APP_FOLDER: app
